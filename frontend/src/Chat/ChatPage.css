@@ -1,0 +1,18 @@
+.wrapper{
+    height: 500px;
+    width: 300px;
+    border: 1px black solid;
+    margin: auto;
+    padding: auto;
+}
+.messageWall{
+    height: 430px;
+    width:300px;
+    margin-top:20px;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+
+}
+.textBox{
+    width:200px;
+}
