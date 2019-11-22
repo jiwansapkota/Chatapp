@@ -16,6 +16,12 @@
 .textBox{
     width:200px;
 }
+.messageWall{
+    /* overflow-x: scroll; */
+    /* overflow-y: scroll; */
+
+
+}
 .messageContainerReceived{
     margin: 10px;
     width: auto;

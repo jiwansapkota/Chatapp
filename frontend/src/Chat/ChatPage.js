@@ -10,18 +10,19 @@ export class ChatPage extends Component {
         super(props)
     
         this.state = {
-            name:'',
+            senderName:'',
+            ownName:'',
             messageSent:'',
             messageReceived:[]
              
         }
     }
     componentDidMount(){
-        socket.on('test',(response)=>{
+        socket.on('broadcast',(response)=>{
             const tempArr = this.state.messageReceived;
-            tempArr.push(response);
-            this.setState({messageReceived: tempArr});
-            console.log(this.state.messageReceived);
+            tempArr.push(response.message);
+            this.setState({senderName:response.name,messageReceived: tempArr});
+            console.log(`${this.state.messageReceived} is sent by ${this.state.senderName}`);
 
         });
        }
@@ -30,20 +31,24 @@ export class ChatPage extends Component {
              messageSent: e.target.value});
 
     }
+    onNameHandler=(e)=>{
+        this.setState({
+             ownName: e.target.value});
+
+    }
     
     onClickHandler=(e)=>{
         e.preventDefault();
-        socket.emit('input',{clientMessage:this.state.messageSent})
-        console.log(this.state.messageSent);
-        this.setState({messageSent: ''})
+        socket.emit('input',{clientName:this.state.ownName,clientMessage:this.state.messageSent})
+        this.setState({messageSent: '',ownName:''})
     }
     render() {
         return (
             <div className="wrapper">
-                Name
+                <input type='text' value={this.state.name} onChange={this.onNameHandler}></input>
                 <div className="messageWall">
                 <div className='messageContainerReceived'>
-                <div className='avatarWrapper'></div>
+    <div className='avatarWrapper'>{this.state.senderName}</div>
                 <div > 
                     {this.state.messageReceived.map((message, index)=> {
                     return <li className='message' key = {index}>{message}</li>
