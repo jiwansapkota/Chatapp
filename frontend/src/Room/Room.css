@@ -1,0 +1,16 @@
+.wrapper{
+    height: 500px;
+    width: 300px;
+    border: 1px black solid;
+    margin:100px;
+    padding: auto;
+}
+.textBox{
+    widows: 100px;
+    margin:auto;
+}
+.submitBUtton{
+    padding:100px;
+    width:cover;
+    margin:100px;
+}
